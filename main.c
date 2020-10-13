@@ -1,7 +1,7 @@
 /*
 	XBmpWall (xbmpwall)
 
-	Copyright (C) 2019 by daltomi <daltomi@disroot.org> <danieltborelli@gmail.com>
+	Copyright (C) 2019 by daltomi <daltomi@disroot.org>
 
 	This file is part of xbmpwall.
 
