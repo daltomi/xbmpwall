@@ -1,5 +1,5 @@
 ### XBmpWall (xbmpwall)
-  
+
 X11 bitmap (.xbm) file manager for `xsetroot`.
 
 It shows a bitmap preview and allows you to place it as a wallpaper.
@@ -11,9 +11,9 @@ It shows a bitmap preview and allows you to place it as a wallpaper.
 
 
 
-<img src="https://git.disroot.org/daltomi/xbmpwall/raw/branch/master/preview02.png"/>
+<img src="https://github.com/daltomi/xbmpwall/raw/master/preview02.png"/>
 
-<img src="https://git.disroot.org/daltomi/xbmpwall/raw/branch/master/preview03.png"/>
+<img src="https://github.com/daltomi/xbmpwall/raw/master/preview03.png"/>
 
 
 
@@ -52,7 +52,7 @@ Recommended to download the bitmaps collection from: `https://github.com/dkeg/bi
 
 - Each time you select a bitmap or a color(background or foreground), `xsetroot` is executed to place the wallpaper.
 
-- To change between the color selection: 
+- To change between the color selection:
 
 	- press :keyboard: key `Space` to change selection mode:`foreground color` or `background color` then
 
