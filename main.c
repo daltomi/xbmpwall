@@ -50,6 +50,7 @@
 #include <X11/Xaw/Viewport.h>
 #include <X11/Xaw/Dialog.h>
 #include <X11/cursorfont.h>
+#include <X11/xpm.h>
 
 #include "desktop/xbmpwall.xbm"
 #include "hexcolors.h"
@@ -106,12 +107,34 @@ static Boolean		activeColorFg	= True;
 static Cursor		cursorUp,
 					cursorDown;
 
+enum XFileType {
+    FILE_XBM,
+    FILE_XPM,
+    FILE_UNKNOWN,
+};
 
 #define Free(p) do {	\
 	free(p);			\
 	p = NULL;			\
 }while(0);
 
+
+static enum XFileType GetFileTypeFromName(char const *const filename)
+{
+    enum XFileType fileType;
+
+    char const *const extension = strrchr(filename, '.');
+    assert(extension != NULL);
+
+    if (!strncmp(extension, ".xbm", 4)) {
+        fileType = FILE_XBM;
+    } else if (!strncmp(extension, ".xpm", 4)) {
+        fileType = FILE_XPM;
+    } else {
+        fileType = FILE_UNKNOWN;
+    }
+    return fileType;
+}
 
 /* Intenta asignar un valor a bitmapName, sino NULL.
  * Sobrescribe colorFg y colorBg, sino default.
@@ -393,23 +416,54 @@ int main(int argc, char *argv[])
 		char *filename = strdup(argv[i]);
 		assert(filename != NULL);
 
-		unsigned int width, height;
-		unsigned char *data = NULL;
-		int hotX, hotY;
+		Pixmap pixmap;
 
-		if(XReadBitmapFileData(filename, &width, &height, &data, &hotX, &hotY) != BitmapSuccess) {
-			fprintf(stderr, "Error reading the bitmap file: %s\n", filename);
-			exit(EXIT_FAILURE);
-		}
+        enum XFileType const fileType = GetFileTypeFromName(filename);
 
-		if(!data) {
-			continue;
-		}
+        if (FILE_UNKNOWN == fileType) {
+                fprintf(stderr, "Error reading unknow file: %s\n", filename);
+                exit(EXIT_FAILURE);
+        }
 
-		Pixmap pixmap = XCreatePixmapFromBitmapData(display,
-						RootWindowOfScreen(screen),
-						(char *)data, width, height,
-						fg, bg, depth);
+        if (FILE_XBM == fileType) {
+
+            unsigned char *data = NULL;
+            unsigned int width, height;
+            int hotX, hotY;
+
+            if(XReadBitmapFileData(filename, &width, &height, &data, &hotX, &hotY) != BitmapSuccess) {
+                fprintf(stderr, "Error reading the bitmap file: %s\n", filename);
+                exit(EXIT_FAILURE);
+            }
+            if (!data) {
+                Free(filename);
+                continue;
+            }
+
+            pixmap = XCreatePixmapFromBitmapData(display,
+                            RootWindowOfScreen(screen),
+                            (char *)data, width, height,
+                            fg, bg, depth);
+            XFree(data);
+
+        } else { // FILE_XPM
+
+            /* code XawXpm app */
+            XWindowAttributes root_att;
+            XpmAttributes orig_att;
+
+		    XGetWindowAttributes(display ,DefaultRootWindow(display), &root_att);
+            orig_att.closeness = 65536;
+            orig_att.colormap = root_att.colormap;
+            orig_att.valuemask = XpmSize | XpmReturnPixels | XpmColormap | XpmCloseness;
+
+            if(XpmReadFileToPixmap(display, RootWindowOfScreen(screen)
+                        filename, &pixmap, NULL, &orig_att) == XpmOpenFailed) {
+                fprintf(stderr, "Error reading the pixmap file: %s\n", filename);
+                exit(EXIT_FAILURE);
+            }
+        }
+
 
 		Widget widget = XtVaCreateManagedWidget(NULL,
 						commandWidgetClass,
@@ -420,7 +474,6 @@ int main(int argc, char *argv[])
 						NULL);
 
 		XtAddCallback(widget, XtNcallback, SetWallpaper, filename);
-		XFree(data);
 		++nbitmaps;
 	}
 

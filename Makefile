@@ -10,7 +10,7 @@ TARGET_LIB="-lXaw"
 # neXtaw
 #TARGET_LIB="-lneXtaw"
 
-CLIBS := ${TARGET_LIB} -lX11 -lXt -lX11
+CLIBS := ${TARGET_LIB} -lX11 -lXt -lX11 -lXpm
 CLIBS_RELEASE := -Wl,-s,--sort-common,--as-needed,-z,relro
 
 CFLAGS := -std=gnu99 -D_GNU_SOURCE
