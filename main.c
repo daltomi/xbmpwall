@@ -54,7 +54,7 @@
 #include "desktop/xbmpwall.xbm"
 #include "hexcolors.h"
 
-#define VERSION			"1.14"
+#define VERSION			"1.15"
 #define APP_NAME		"XBmpWall"
 #define APP_VERSION		APP_NAME " v." VERSION
 #define INFO_BITMAPS	APP_VERSION "\nOpen: %d"
