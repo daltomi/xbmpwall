@@ -15,7 +15,17 @@ It shows a bitmap preview and allows you to place it as a wallpaper.
 
 <img src="https://github.com/daltomi/xbmpwall/raw/master/preview03.png"/>
 
+---
 
+### Package - ArchLinux - AUR
+[xbmpwall-git](https://aur.archlinux.org/packages/xbmpwall-git/)
+
+<img src="https://github.com/daltomi/xbmpwall/raw/master/aur.png"/>
+
+  * GPG key
+	```bash
+	gpg --keyserver gozer.rediris.es --recv-keys EA8BDDF776B54DD1
+	```
 
 ---
 
