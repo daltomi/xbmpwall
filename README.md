@@ -75,7 +75,7 @@ This script in 'sh' has the executable attribute.
 
 #### X11 resources
 
-For example, you can modify some properties in `~/.Xresource`:
+For example, you can modify some properties in `~/.Xresources`:
 
 ```
 XBmpWall*font: -*-terminus-bold-*-*-*-12-*-*-*-*-*-*-*
