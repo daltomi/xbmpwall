@@ -50,7 +50,7 @@ Recommended to download the bitmaps collection from: `https://github.com/dkeg/bi
 - Open `xbmpwall` indicating the file or files of bitmaps (* .xbm), for example:
 
 ```
-./xbmpwall $(pwd)/arches.xbm $(pwd)balls.xbm
+./xbmpwall $(pwd)/arches.xbm $(pwd)/balls.xbm
 
 ./xbmpwall ~/bitmap-walls/{patterns/*.xbm,bw-bgnd/*.xbm}
 
