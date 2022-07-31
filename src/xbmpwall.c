@@ -188,7 +188,7 @@ static void Quit(Widget w, XEvent *event, String *params , Cardinal *nparams)
 
   errno = 0;
 
-  if (fwrite(SCRIPT_HEAD, 10, 1, file) == 0 ||
+  if (fwrite(SCRIPT_HEAD, strlen(SCRIPT_HEAD), 1, file) == 0 ||
       fwrite(bashcmd, strlen(bashcmd), 1, file) == 0) {
     Free(bashcmd);
     fprintf(stderr, APP_NAME ": failed to write file:%s\n", filename);

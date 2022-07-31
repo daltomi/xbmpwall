@@ -1,7 +1,7 @@
 AC_PREREQ([2.69])
 
 AC_INIT([xbmpwall],
-		[1.16],
+		[1.17],
 		[https://github.com/daltomi/xbmpwall/issues],
 		[],
 		[https://github.com/daltomi/xbmpwall])
