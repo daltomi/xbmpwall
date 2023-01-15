@@ -24,22 +24,27 @@ It shows a bitmap preview and allows you to place it as a wallpaper.
   +  `C11, POSIX.1-2008`
   + `libX11`
   + `libXaw (X11 Athena Widget library)`
-  + `autotools`
+  + `autotools` (*)
   + `xsetroot`
   + `sh`
 
 * Process:
 
-  + `autoreconf -fi`
+  + `autoreconf -fi` (*)
 
-  * debug:
-      + `./configure CFLAGS="-O2 -g -Wall -Wextra" CPPFLAGS="-DDEBUG" && make`
+  + debug:
+    ```bash
+      $ ./configure CFLAGS="-O2 -g -Wall -Wextra" CPPFLAGS="-DDEBUG" && make
+    ```
+  + release:
+    ```bash
+      $ ./configure CFLAGS="-O3" CPPFLAGS="-DNDEBUG" && make
+    ```
 
-  * release:
-      + `./configure CFLAGS="-O3" CPPFLAGS="-DNDEBUG" && make`
 
+(*) Only if you build from GIT.
 
-_Please, if you want to help find bugs, compile in Debug mode._
+_Note: Please, if you want to help find bugs, compile in Debug mode._
 
 
 #### User manual
@@ -49,10 +54,10 @@ Recommended to download the bitmaps collection from: `https://github.com/dkeg/bi
 
 - Open `xbmpwall` indicating the file or files of bitmaps (* .xbm), for example:
 
-```
-./xbmpwall $(pwd)/arches.xbm $(pwd)/balls.xbm
+```bash
+$ xbmpwall $(pwd)/arches.xbm $(pwd)/balls.xbm
 
-./xbmpwall ~/bitmap-walls/{patterns/*.xbm,bw-bgnd/*.xbm}
+$ xbmpwall ~/bitmap-walls/{patterns/*.xbm,bw-bgnd/*.xbm}
 
 ```
 
@@ -77,7 +82,7 @@ This script in 'sh' has the executable attribute.
 
 For example, you can modify some properties in `~/.Xresources`:
 
-```
+```bash
 XBmpWall*font: -*-terminus-bold-*-*-*-12-*-*-*-*-*-*-*
 XBmpWall*.background: #ECE9D8
 XBmpWall*foreground: red
