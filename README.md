@@ -11,6 +11,10 @@ It shows a bitmap preview and allows you to place it as a wallpaper.
 
 
 
+
+https://github.com/user-attachments/assets/7398fb4e-75d1-4325-a436-4e325aed973d
+
+
 <img src="https://github.com/daltomi/xbmpwall/raw/master/preview02.png"/>
 
 <img src="https://github.com/daltomi/xbmpwall/raw/master/preview03.png"/>
