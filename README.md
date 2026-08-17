@@ -24,6 +24,10 @@ https://github.com/user-attachments/assets/7398fb4e-75d1-4325-a436-4e325aed973d
 
 #### Build
 
+* Clone the repo:
+
+  `git clone --recurse-submodules https://github.com/daltomi/xbmpwall.git`
+
 * Requirements:
   +  `C11, POSIX.1-2008`
   + `libX11`
